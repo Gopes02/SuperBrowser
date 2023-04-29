@@ -20,7 +20,7 @@ class PageViewerFragment : Fragment() {
         ViewModelProvider(requireActivity())[BrowserViewModel::class.java]
     }
 
-    private lateinit var webView: WebView
+    lateinit var webView: WebView
     private lateinit var goButton: ImageButton
     private lateinit var bkButton: ImageButton
     private lateinit var fwdButton: ImageButton

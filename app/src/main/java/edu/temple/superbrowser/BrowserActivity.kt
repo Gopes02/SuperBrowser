@@ -2,13 +2,18 @@ package edu.temple.superbrowser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 
 class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserControlInterface, PageViewerFragment.PageViewerInterface, PageListFragment.PageListInterface {
 
-    private val pager: ViewPager2 by lazy {
+
+    private lateinit var bookmarkManager: BookmarkManager
+
+
+    val pager: ViewPager2 by lazy {
         findViewById(R.id.viewPager)
     }
 
@@ -21,6 +26,7 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
         setContentView(R.layout.activity_main)
 
         pager.adapter = BrowserFragmentStateAdapter(this)
+        bookmarkManager = BookmarkManager(this)
 
         // Move to previous page index
         pager.setCurrentItem(browserViewModel.currentPageIndex, false)
@@ -91,5 +97,19 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
     override fun pageSelected(pageIndex: Int) {
         pager.setCurrentItem(pageIndex, true)
     }
+
+    override fun saveBookmark() {
+        val currentPage = pager.currentItem
+        val pageViewerFragment = supportFragmentManager.findFragmentByTag("f$currentPage") as PageViewerFragment
+        val title = pageViewerFragment.webView.title ?: "Untitled"
+        val url = pageViewerFragment.webView.url ?: "about:blank"
+
+
+        val bookmark = Bookmark(title, url)
+        bookmarkManager.addBookmark(bookmark)
+
+        Toast.makeText(this, "Bookmark saved", Toast.LENGTH_SHORT).show()
+    }
+
 
 }

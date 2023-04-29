@@ -35,4 +35,6 @@ class BrowserViewModel : ViewModel() {
     fun getPageTitleObservable (): LiveData<Int> {
         return titleObservable
     }
+
+
 }

@@ -24,4 +24,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/addPageButton"
         app:layout_constraintEnd_toStartOf="@+id/addPageButton"
         app:layout_constraintTop_toTopOf="@+id/addPageButton" />
+
+    <ImageButton
+        android:id="@+id/saveBookmarkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_save"
+        app:layout_constraintEnd_toStartOf="@+id/closePageButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_share"
+        android:contentDescription="@string/share_button_content_description" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
