@@ -13,6 +13,12 @@ class BookmarkManager(private val context: Context) {
         saveBookmarks(bookmarks)
     }
 
+    fun isUrlAlreadySaved(url: String): Boolean {
+        return getAllBookmarks().any { it.url == url }
+    }
+
+
+
     fun getAllBookmarks(): List<Bookmark> {
         val bookmarksJson = sharedPreferences.getString("bookmarks", "[]")
         val bookmarksType = object : TypeToken<List<Bookmark>>() {}.type

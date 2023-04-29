@@ -102,14 +102,19 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
         val currentPage = pager.currentItem
         val pageViewerFragment = supportFragmentManager.findFragmentByTag("f$currentPage") as PageViewerFragment
         val title = pageViewerFragment.webView.title ?: "Untitled"
-        val url = pageViewerFragment.webView.url ?: "about:blank"
+        val url = pageViewerFragment.webView.url
 
+        if (url == null || url.isEmpty() || url == "about:blank") {
+            // Display error message
+            Toast.makeText(this, getString(R.string.no_website_error), Toast.LENGTH_SHORT).show()
+        } else if (bookmarkManager.isUrlAlreadySaved(url)) {
+            // Display error message
+            Toast.makeText(this, getString(R.string.url_already_saved_error), Toast.LENGTH_SHORT).show()
+        } else {
+            val bookmark = Bookmark(title, url)
+            bookmarkManager.addBookmark(bookmark)
 
-        val bookmark = Bookmark(title, url)
-        bookmarkManager.addBookmark(bookmark)
-
-        Toast.makeText(this, "Bookmark saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Bookmark saved", Toast.LENGTH_SHORT).show()
+        }
     }
-
-
 }
