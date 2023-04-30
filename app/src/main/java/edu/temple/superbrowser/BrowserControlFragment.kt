@@ -17,13 +17,20 @@ class BrowserControlFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_browser_control, container, false).apply {
+
+            findViewById<ImageButton>(R.id.showBookmarksButton).setOnClickListener { (requireActivity() as BrowserControlInterface).showBookmarks() }
             findViewById<ImageButton>(R.id.shareButton).setOnClickListener { shareCurrentPage() }
             findViewById<ImageButton>(R.id.saveBookmarkButton).setOnClickListener { (requireActivity() as BrowserControlInterface).saveBookmark() }
             findViewById<ImageButton>(R.id.addPageButton).setOnClickListener{(requireActivity() as BrowserControlInterface).addPage()}
             findViewById<ImageButton>(R.id.closePageButton).setOnClickListener{(requireActivity() as BrowserControlInterface).closePage()}
-
         }
     }
+
+    private fun showBookmarks() {
+        val bookmarkListDialogFragment = BookmarkListDialogFragment()
+        bookmarkListDialogFragment.show(parentFragmentManager, "BookmarkListDialogFragment")
+    }
+
 
 
     private fun shareCurrentPage() {
@@ -47,7 +54,7 @@ class BrowserControlFragment : Fragment() {
         fun addPage()
         fun closePage()
         fun saveBookmark()
-
+        fun showBookmarks()
     }
 
 }

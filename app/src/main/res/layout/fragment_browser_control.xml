@@ -7,11 +7,41 @@
     tools:context=".BrowserControlFragment">
 
     <ImageButton
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/share_button_content_description"
+        android:src="@android:drawable/ic_menu_share"
+        app:layout_constraintEnd_toStartOf="@+id/saveBookmarkButton"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/saveBookmarkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_save"
+        app:layout_constraintEnd_toStartOf="@+id/showBookmarksButton"
+        app:layout_constraintStart_toEndOf="@+id/shareButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/showBookmarksButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_dialer"
+        app:layout_constraintEnd_toStartOf="@+id/addPageButton"
+        app:layout_constraintStart_toEndOf="@+id/saveBookmarkButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
         android:id="@+id/addPageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_add"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showBookmarksButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -25,24 +55,5 @@
         app:layout_constraintEnd_toStartOf="@+id/addPageButton"
         app:layout_constraintTop_toTopOf="@+id/addPageButton" />
 
-    <ImageButton
-        android:id="@+id/saveBookmarkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_save"
-        app:layout_constraintEnd_toStartOf="@+id/addPageButton"
-        app:layout_constraintStart_toEndOf="@+id/shareButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/shareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/share_button_content_description"
-        android:src="@android:drawable/ic_menu_share"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -114,6 +114,10 @@ class PageViewerFragment : Fragment() {
         super.onResume()
         webView.onResume()
     }
+    fun loadUrl(url: String) {
+        webView.loadUrl(url)
+    }
+
 
     override fun onPause() {
         super.onPause()

@@ -117,4 +117,20 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
             Toast.makeText(this, "Bookmark saved", Toast.LENGTH_SHORT).show()
         }
     }
+    override fun showBookmarks() {
+        val bookmarkListDialogFragment = BookmarkListDialogFragment()
+        bookmarkListDialogFragment.setOnUrlSelectedListener { url ->
+            // Load the selected URL in the currently active PageViewerFragment
+            val currentPage = pager.currentItem
+            val pageViewerFragment = supportFragmentManager.findFragmentByTag("f$currentPage") as? PageViewerFragment
+            pageViewerFragment?.loadUrl(url)
+        }
+        bookmarkListDialogFragment.show(supportFragmentManager, "BookmarkListDialogFragment")
+    }
+    private fun loadUrl(url: String) {
+        val pageViewerFragment = supportFragmentManager.findFragmentByTag("page_viewer_fragment") as? PageViewerFragment
+        pageViewerFragment?.loadUrl(url)
+    }
+
+
 }

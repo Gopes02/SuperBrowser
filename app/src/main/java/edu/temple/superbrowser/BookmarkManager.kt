@@ -17,6 +17,11 @@ class BookmarkManager(private val context: Context) {
         return getAllBookmarks().any { it.url == url }
     }
 
+    fun deleteBookmark(url: String) {
+        val bookmarks = getAllBookmarks().toMutableList()
+        bookmarks.removeAll { it.url == url }
+        saveBookmarks(bookmarks)
+    }
 
 
     fun getAllBookmarks(): List<Bookmark> {
