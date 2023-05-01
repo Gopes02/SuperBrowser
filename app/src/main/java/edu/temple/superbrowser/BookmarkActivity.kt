@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class BookmarkListActivity : AppCompatActivity() {
+class BookmarkActivity : AppCompatActivity() {
 
     private lateinit var bookmarkManager: BookmarkManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bookmark_list)
+        setContentView(R.layout.activity_bookmark)
 
         setTitle("Bookmarks")
 

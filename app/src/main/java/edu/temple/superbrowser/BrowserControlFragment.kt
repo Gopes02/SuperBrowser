@@ -19,7 +19,7 @@ class BrowserControlFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_browser_control, container, false).apply {
 
             findViewById<ImageButton>(R.id.showBookmarksButton).setOnClickListener {
-                val intent = Intent(requireActivity(), BookmarkListActivity::class.java)
+                val intent = Intent(requireActivity(), BookmarkActivity::class.java)
                 requireActivity().startActivityForResult(intent, BrowserActivity.BOOKMARKS_REQUEST_CODE)
             }
             findViewById<ImageButton>(R.id.shareButton).setOnClickListener { shareCurrentPage() }

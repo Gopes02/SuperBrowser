@@ -120,7 +120,7 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
         }
     }
     override fun showBookmarks() {
-        val intent = Intent(this, BookmarkListActivity::class.java)
+        val intent = Intent(this, BookmarkActivity::class.java)
         startActivityForResult(intent, BOOKMARKS_REQUEST_CODE)
     }
 
