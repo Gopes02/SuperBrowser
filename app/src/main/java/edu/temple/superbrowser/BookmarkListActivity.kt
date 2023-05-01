@@ -3,6 +3,7 @@ package edu.temple.superbrowser
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,11 @@ class BookmarkListActivity : AppCompatActivity() {
         bookmarkManager = BookmarkManager(this)
 
         val bookmarks = bookmarkManager.getAllBookmarks()
+
+        findViewById<ImageButton>(R.id.exitBookmarkButton).setOnClickListener {
+            finish()
+        }
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.bookmark_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
