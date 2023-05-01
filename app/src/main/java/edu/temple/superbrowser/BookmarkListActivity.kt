@@ -1,6 +1,6 @@
 package edu.temple.superbrowser
 
-import BookmarkListAdapter
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -16,6 +16,8 @@ class BookmarkListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmark_list)
 
+        setTitle("Bookmarks")
+
         bookmarkManager = BookmarkManager(this)
 
         val bookmarks = bookmarkManager.getAllBookmarks()
@@ -25,19 +27,22 @@ class BookmarkListActivity : AppCompatActivity() {
         recyclerView.adapter = BookmarkListAdapter(bookmarks,
             object : BookmarkListAdapter.OnBookmarkClickListener {
                 override fun onBookmarkClick(url: String) {
-                    val intent = Intent(this@BookmarkListActivity, BrowserActivity::class.java)
-                    intent.putExtra("url", url)
-                    startActivity(intent)
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("selectedURL", url)
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
                 }
+
+
             },
             object : BookmarkListAdapter.OnDeleteClickListener {
                 override fun onDeleteClick(url: String) {
-                    showDeleteConfirmationDialog(url)
+                    deleteConfirmationDialog(url)
                 }
             })
     }
 
-    private fun showDeleteConfirmationDialog(url: String) {
+    private fun deleteConfirmationDialog(url: String) {
         AlertDialog.Builder(this)
             .setTitle(R.string.delete_bookmark_title)
             .setMessage(R.string.delete_bookmark_message)

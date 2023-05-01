@@ -1,16 +1,17 @@
+package edu.temple.superbrowser
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import edu.temple.superbrowser.Bookmark
-import edu.temple.superbrowser.R
+
 
 class BookmarkListAdapter(
     private val bookmarks: List<Bookmark>,
     private val onBookmarkClickListener: OnBookmarkClickListener,
-    private val onDeleteClickListener: OnDeleteClickListener? // Updated to allow null
+    private val onDeleteClickListener: OnDeleteClickListener?
 ) : RecyclerView.Adapter<BookmarkListAdapter.BookmarkViewHolder>() {
 
     interface OnBookmarkClickListener {
@@ -32,7 +33,7 @@ class BookmarkListAdapter(
         holder.titleTextView.text = bookmark.title
 
         holder.itemView.setOnClickListener { onBookmarkClickListener.onBookmarkClick(bookmark.url) }
-        holder.deleteButton.setOnClickListener { onDeleteClickListener?.onDeleteClick(bookmark.url) } // Updated to allow null
+        holder.deleteButton.setOnClickListener { onDeleteClickListener?.onDeleteClick(bookmark.url) }
     }
 
     override fun getItemCount() = bookmarks.size

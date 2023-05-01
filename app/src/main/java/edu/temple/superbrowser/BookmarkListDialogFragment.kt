@@ -1,6 +1,5 @@
 package edu.temple.superbrowser
 
-import BookmarkListAdapter
 import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -65,7 +64,5 @@ class BookmarkListDialogFragment : DialogFragment(), BookmarkListAdapter.OnBookm
             .show()
     }
 
-    interface OnBookmarkDeletedListener {
-        fun onBookmarkDeleted()
-    }
+
 }

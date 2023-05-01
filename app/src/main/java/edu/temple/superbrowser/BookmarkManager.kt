@@ -3,7 +3,7 @@ package edu.temple.superbrowser
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-class BookmarkManager(private val context: Context) {
+class BookmarkManager(context: Context) {
 
     private val sharedPreferences = context.getSharedPreferences("bookmarks", Context.MODE_PRIVATE)
 

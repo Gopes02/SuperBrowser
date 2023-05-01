@@ -1,5 +1,7 @@
 package edu.temple.superbrowser
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -118,19 +120,34 @@ class BrowserActivity : AppCompatActivity(), BrowserControlFragment.BrowserContr
         }
     }
     override fun showBookmarks() {
-        val bookmarkListDialogFragment = BookmarkListDialogFragment()
-        bookmarkListDialogFragment.setOnUrlSelectedListener { url ->
-            // Load the selected URL in the currently active PageViewerFragment
-            val currentPage = pager.currentItem
-            val pageViewerFragment = supportFragmentManager.findFragmentByTag("f$currentPage") as? PageViewerFragment
-            pageViewerFragment?.loadUrl(url)
-        }
-        bookmarkListDialogFragment.show(supportFragmentManager, "BookmarkListDialogFragment")
+        val intent = Intent(this, BookmarkListActivity::class.java)
+        startActivityForResult(intent, BOOKMARKS_REQUEST_CODE)
     }
+
+
     private fun loadUrl(url: String) {
         val pageViewerFragment = supportFragmentManager.findFragmentByTag("page_viewer_fragment") as? PageViewerFragment
         pageViewerFragment?.loadUrl(url)
     }
 
+    companion object {
+        const val BOOKMARKS_REQUEST_CODE = 1
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == BOOKMARKS_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val selectedURL = data?.getStringExtra("selectedURL")
+            selectedURL?.let {
+                loadUrlInCurrentFragment(it)
+            }
+        }
+    }
+
+    override fun loadUrlInCurrentFragment(url: String) {
+        val currentFragment = supportFragmentManager.findFragmentByTag("f${pager.currentItem}") as PageViewerFragment
+        currentFragment.loadUrl(url)
+    }
 }
+
